@@ -324,11 +324,13 @@ class Settings extends PluginSettingTab {
           .setValue(this.plugin.settings.showNamesOnHover)
           .onChange(async (value) => {
             this.plugin.settings.showNamesOnHover = value;
+            details.setDisabled(!value);
+            position.setDisabled(!value);
             this.plugin.refresh();
             await this.plugin.saveData(this.plugin.settings);
           }),
       );
-    new Setting(this.containerEl)
+    const details = new Setting(this.containerEl)
       .setName("Show details below name")
       .setDesc(
         "Show folder counts or file modified/created times below the name after one second, replacing the native popup. Requires full names on hover.",
@@ -346,7 +348,8 @@ class Settings extends PluginSettingTab {
             await this.plugin.saveData(this.plugin.settings);
           }),
       );
-    new Setting(this.containerEl)
+    details.setDisabled(!this.plugin.settings.showNamesOnHover);
+    const position = new Setting(this.containerEl)
       .setName("Hover label position")
       .setDesc(
         "Place the name to the left, centered above, or to the right of your cursor. Labels stay inside the window.",
@@ -362,5 +365,6 @@ class Settings extends PluginSettingTab {
             await this.plugin.saveData(this.plugin.settings);
           }),
       );
+    position.setDisabled(!this.plugin.settings.showNamesOnHover);
   }
 }
