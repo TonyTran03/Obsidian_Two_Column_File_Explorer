@@ -1,0 +1,9 @@
+{
+  "id": "two-column-explorer",
+  "name": "Two Column Explorer",
+  "version": "1.0.13",
+  "minAppVersion": "1.5.0",
+  "description": "Show folders side by side with clear spacing, keeping expanded contents in their own column.",
+  "author": "Tony",
+  "isDesktopOnly": false
+}

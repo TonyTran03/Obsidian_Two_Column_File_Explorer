@@ -1,0 +1,82 @@
+/* Keep Obsidian's tree nodes and their event handlers intact. Only the
+   vault root is a grid; nested folders retain the native tree layout. */
+.workspace-leaf-content.two-column-explorer .nav-files-container > .two-column-root,
+.workspace-leaf-content.two-column-explorer .nav-files-container > .nav-folder > .nav-folder-children {
+  /* Override native-tree reset snippets only while this plugin is active. */
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  column-gap: 14px !important;
+  row-gap: 6px !important;
+  align-items: start;
+}
+
+.two-column-name-tooltip {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+  left: 0;
+  top: 0;
+  width: max-content;
+  max-width: min(440px, calc(100vw - 16px));
+  max-height: calc(100vh - 16px);
+  overflow: hidden;
+  padding: 7px 10px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  background: var(--background-primary);
+  color: var(--text-normal);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+  font: var(--font-ui-small) var(--font-interface);
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.two-column-name-counts {
+  white-space: pre-line;
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px solid var(--background-modifier-border);
+  color: var(--text-muted);
+  font-size: 0.9em;
+}
+
+.two-column-explorer .two-column-root > :is(.nav-file, .nav-folder),
+.two-column-explorer .nav-files-container > .nav-folder > .nav-folder-children > :is(.nav-file, .nav-folder) {
+  min-width: 0;
+}
+
+/* Expanded folders stay in their own column. */
+.two-column-explorer .two-column-root > .nav-folder:not(.is-collapsed),
+.two-column-explorer .nav-files-container > .nav-folder > .nav-folder-children > .nav-folder:not(.is-collapsed) {
+  grid-column: auto;
+}
+
+.two-column-explorer .two-column-root > .nav-folder {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  padding: 3px;
+  overflow: hidden;
+}
+
+.two-column-explorer .two-column-pusher {
+  display: none !important;
+}
+
+.two-column-explorer :is(.nav-file-title, .nav-folder-title) {
+  min-width: 0;
+}
+
+.two-column-explorer :is(.nav-file-title-content, .nav-folder-title-content) {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Let in-place renaming use the available row without clipping the editor. */
+.two-column-explorer :is(.nav-file-title-content, .nav-folder-title-content)[contenteditable='true'] {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  text-overflow: clip;
+}
