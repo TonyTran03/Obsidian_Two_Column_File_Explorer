@@ -1,7 +1,3 @@
-.workspace-leaf-content.two-column-explorer .nav-files-container {
-  scrollbar-gutter: stable;
-}
-
 /* Keep Obsidian's tree nodes and their event handlers intact. Only the
    vault root is a grid; nested folders retain the native tree layout. */
 .workspace-leaf-content.two-column-explorer .nav-files-container > .two-column-root,
