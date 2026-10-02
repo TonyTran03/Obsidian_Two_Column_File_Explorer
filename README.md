@@ -5,12 +5,10 @@ Shows Obsidian's files and folders in two columns. Expanded folders stay in thei
 ![Two-column file explorer](images/explorer.png)
 
 ## Settings
-
 - Show full file and folder names on hover.
 - Show folder counts or file dates below the name after one second.
 - Put the hover label to the left, center, or right of your mouse.
 
-![Settings](images/settings.png)
 
 Disable the plugin to return to the normal file explorer.
 
